@@ -16,7 +16,7 @@ if (localStorage.getItem("list")) {
             .then((data) => {
                 if (!(data.Response === "False")) view.displayMovieOnPage(data);
             })
-            .catch(error => console.log("Error loading a movie: ", error));
+            .catch(error => alert("Error loading a movie: ", error));
     }
 }
 document.querySelector(".buttons").addEventListener("click", (e) => {
@@ -40,8 +40,8 @@ input.addEventListener("keypress", (e) => {
             try {
                 client.getMovieData(movie).then((data) => {
                     if (data && !(data.Response === "False")) {
-                        if (!list.includes(movie)) {
-                            list.push(movie);
+                        if (!list.includes(data.Title)) {
+                            list.push(data.Title);
                             console.log(typeof data.Response);
                             view.displayMovieOnPage(data);
                         } else alert("You have already added this movie.");
